@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface CompanyRepository extends JpaRepository<Company, Long> {
     Optional<Company> findByType(CompanyType companyType);
 
-    List<Company> findAllByDeletedFalse();
+    List<Company> findAll();
 }

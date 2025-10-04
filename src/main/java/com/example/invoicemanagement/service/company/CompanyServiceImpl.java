@@ -21,7 +21,6 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company findByType(CompanyType companyType) {
         return this.companyRepository.findByType(companyType)
-                .filter(company -> Boolean.FALSE.equals(company.isDeleted()))
                 .stream()
                 .findFirst()
                 .orElseThrow(NonExistingCompanyException::new);
@@ -30,7 +29,6 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company findById(Long id) {
         return this.companyRepository.findById(id)
-                .filter(company -> Boolean.FALSE.equals(company.isDeleted()))
                 .orElseThrow(NonExistingCompanyException::new);
     }
 
@@ -44,16 +42,12 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void delete(Long id) {
-        this.companyRepository.findById(id).ifPresent(company -> {
-            company.setDeleted(Boolean.TRUE);
-
-            this.companyRepository.save(company);
-        });
+        this.companyRepository.deleteById(id);
     }
 
     @Override
     public List<CompanyResponse> getAll() {
-        return companyRepository.findAllByDeletedFalse()
+        return companyRepository.findAll()
                 .stream()
                 .map(this.companyMapper::map)
                 .toList();

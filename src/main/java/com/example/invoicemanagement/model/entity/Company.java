@@ -32,6 +32,4 @@ public class Company extends BaseEntity {
     private String bankName;
 
     private String iban;
-
-    private boolean deleted;
 }

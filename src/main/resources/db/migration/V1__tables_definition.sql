@@ -9,8 +9,7 @@ CREATE TABLE IF NOT EXISTS companies
     responsible_officer_name    VARCHAR(255),
     bank_identifier_code        VARCHAR(50),
     bank_name                   VARCHAR(255),
-    iban                        VARCHAR(50),
-    deleted                     BOOL
+    iban                        VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS invoices
@@ -40,8 +39,8 @@ INSERT INTO companies (name,
                        responsible_officer_name,
                        bank_identifier_code,
                        bank_name,
-                       iban,
-                       deleted)
+                       iban
+                       )
 VALUES ('АЛФА ТД',
         '203786770',
         'гр. Пловдив, ж.к Тракия, бл. 107, вх. Д, ет. 6',
@@ -50,8 +49,8 @@ VALUES ('АЛФА ТД',
         'Таню Димитров',
         'UBBSBGSF',
         'ОББ Банк',
-        'BG93UBBS81551006599372',
-        false);
+        'BG93UBBS81551006599372'
+        );
 
 CREATE SEQUENCE invoice_serial_seq
     START 1
