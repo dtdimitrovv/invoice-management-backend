@@ -12,12 +12,6 @@ public record CompanyCreationRequest(
         @NotNull
         String vatNumber,
         @NotNull
-        String responsibleOfficerName,
-        @NotNull
-        String bankIdentifierCode,
-        @NotNull
-        String bankName,
-        @NotNull
-        String iban
+        String responsibleOfficerName
 ) {
 }
