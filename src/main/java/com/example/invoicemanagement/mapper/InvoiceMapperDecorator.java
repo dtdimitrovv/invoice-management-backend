@@ -25,7 +25,7 @@ public abstract class InvoiceMapperDecorator implements InvoiceMapper {
     @Override
     public Invoice map(InvoiceOperationRequest invoiceOperationRequest) {
         Invoice mapped = this.delegate.map(invoiceOperationRequest);
-        mapped.setSerialNumber(this.invoiceRepository.getNextSerialNumber());
+        mapped.setSerialNumber(this.invoiceRepository.findTopBySerialNumberNotNullOrderBySerialNumberDesc().orElseThrow().getSerialNumber() + 1);
         mapped.setProvider(this.companyService.findByType(CompanyType.SUPPLIER));
         mapped.setClient(this.companyService.findById(invoiceOperationRequest.getClientId()));
 
