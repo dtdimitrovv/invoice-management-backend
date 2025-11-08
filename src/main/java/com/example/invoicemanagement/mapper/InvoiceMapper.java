@@ -23,7 +23,6 @@ public interface InvoiceMapper {
 
     @Mapping(target = "serialNumber", ignore = true)
     @Mapping(target = "issueLocation", ignore = true)
-    @Mapping(target = "issueDate", ignore = true)
     Invoice map(InvoiceOperationRequest invoiceOperationRequest, @MappingTarget Invoice invoice);
 
     InvoiceResponse map(Invoice invoice);
